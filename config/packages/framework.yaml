@@ -15,3 +15,12 @@ framework:
     #fragments: true
     php_errors:
         log: true
+
+    http_client:
+        default_options:
+            headers: { 'Content-Type': 'application/json' }
+#        scoped_clients:
+#            cocoche:
+#                base_uri: 'http://server.cocoche.com.ar'
+#                headers:
+#                    Content-Type: 'application/json'
