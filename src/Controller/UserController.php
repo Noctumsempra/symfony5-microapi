@@ -14,6 +14,31 @@ use Symfony\Component\Routing\Annotation\Route;
 class UserController extends AbstractController
 {
     /**
+     * @Route("/get_users", name="GET_users", methods={"GET"})
+     * @param EntityManagerInterface $entityManager
+     * @param UserRepository $userRepository
+     *
+     * @return JsonResponse
+     */
+    public function getUsers(EntityManagerInterface $entityManager, UserRepository $userRepository)
+    {
+        $users = $userRepository->findAll();
+        $users_array = array_map(function(User $user) {
+            return [
+                'name' => $user->getName(),
+                'phone' => $user->getPhone(),
+                'email' => $user->getEmail(),
+                'created_at' => $user->getCreatedAt(),
+            ];
+        }, $users);
+
+        return $this->json([
+            'success' => true,
+            'message' => $users_array
+        ]);
+    }
+
+    /**
      * @Route("/create_user", name="POST_create_user", methods={"POST"})
      * @param EntityManagerInterface $entityManager
      * @param UserRepository $userRepository
