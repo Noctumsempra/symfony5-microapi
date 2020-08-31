@@ -1,3 +1,6 @@
+# Vim swap files
+*.swp
+.idea/
 
 ###> symfony/framework-bundle ###
 /.env.local
