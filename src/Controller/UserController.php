@@ -65,4 +65,31 @@ class UserController extends AbstractController
             ]
         ]);
     }
+
+    /**
+     * @Route("/delete_user/{id}", name="DELETE_user", methods={"DELETE"})
+     * @param EntityManagerInterface $entityManager
+     * @param UserRepository $userRepository
+     * @param string $id
+     *
+     * @return JsonResponse
+     */
+    public function deleteUser(EntityManagerInterface $entityManager, UserRepository $userRepository, string $id)
+    {
+        $user = $userRepository->find($id);
+        if (!$user) {
+            return $this->json([
+                'success' => false,
+                'message' => sprintf("User ID %s does not exist.", $id)
+            ]);
+        }
+
+        $entityManager->remove($user);
+        $entityManager->flush();
+
+        return $this->json([
+            'success' => true,
+            'message' => sprintf("User ID %s has been deleted successfully.", $id)
+        ]);
+    }
 }
