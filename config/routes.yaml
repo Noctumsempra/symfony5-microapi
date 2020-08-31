@@ -3,12 +3,12 @@ GET_index:
     controller: App\Controller\APIController::getIndex
     methods:    GET
 
-GET_ford_cars:
-    path:       /get_ford_cars
-    controller: App\Controller\APIController::getFordCars
-    methods:    GET
-
-POST_create_user:
-    path:       /create_user
-    controller: App\Controller\APIController::postCreateUser
-    methods:    POST
+#GET_ford_cars:
+#    path:       /get_ford_cars
+#    controller: App\Controller\CarsController::getFordCars
+#    methods:    GET
+#
+#POST_create_user:
+#    path:       /create_user
+#    controller: App\Controller\APIController::postCreateUser
+#    methods:    POST
